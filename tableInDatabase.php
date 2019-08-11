@@ -183,7 +183,7 @@ class TableInDB{
 	// Check whether the value of an attribute or column is in the table or not
 	// Parameters -> column_name in string , condition part in a sql in string (i.e -> "where id = 32 ")
 	// Returns boolean value	
-	// NOTE: This method is not completed yet ... you can be ignore this method 
+	// NOTE: This method is not completed yet ... you can ignore this method 
 	public function has($column_name,$condition_in_string){
 
 		$sql="SELECT ".$column_name." FROM ".$this->name." ".$condition_in_string;
