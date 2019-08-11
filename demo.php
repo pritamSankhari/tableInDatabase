@@ -105,8 +105,8 @@ echo "<pre>";print_r($recent_order);echo "</pre>";
 // Deleting data in the table
 // ###################################
 //--------------------------------------
-// if($order->delete('where id =\'test01\'')) echo "Data of id test01 is deleted!";
-// else echo "Failed to delete!";
+if($order->delete('where id =\'test01\'')) echo "Data of id test01 is deleted!";
+else echo "Failed to delete!";
 //--------------------------------------
 
 // #################################################################
