@@ -12,7 +12,7 @@
 class TableInDB{
 	public $name;	// table name
 	private $database;	// database object (i.e mysqli object)
-	private $coloumns;
+	private $columns;
 	private $in_database;
 
 	public function __construct($name,$database){
@@ -24,14 +24,14 @@ class TableInDB{
 
 	//###################################
 	// Checking whether the table itself exists in database or not
-	// Also collects and stores all coloumns name in an array 
+	// Also collects and stores all columns name in an array 
 	private function check_in_database(){
 		$sql="DESC ".$this->name;
 		if($result_table=$this->database->query($sql)){
 			$this->in_database=true;
-			$coloumn_index=0;
+			$column_index=0;
 			while($result_row=$result_table->fetch_assoc()){
-				$this->coloumns[$coloumn_index++]=$result_row['Field'];
+				$this->columns[$column_index++]=$result_row['Field'];
 			}
 		}
 		else $this->in_database=false;
@@ -41,32 +41,32 @@ class TableInDB{
 	//###################################
 
 	//###################################	
-	public function get_coloumns_name(){
+	public function get_columns_name(){
 		
-		return $this->coloumns;
+		return $this->columns;
 	}
 	//###################################
 
 	//###################################
 	// Fetch data from table 
-	// Parametes -> array of coloumns_name to be selected, condition part in a sql in string (i.e -> "where name='John' ")
+	// Parametes -> array of columns_name to be selected, condition part in a sql in string (i.e -> "where name='John' ")
 	// Returns row as array
-	public function select($coloumns,$condition_in_string=""){
+	public function select($columns,$condition_in_string=""){
 
 
-		$coloumns_all="";
-		for($i=0;$i<count($coloumns);$i++){
-			$coloumns_all.=$coloumns[$i];
-			if($i+1!=count($coloumns)) $coloumns_all.=',';
+		$columns_all="";
+		for($i=0;$i<count($columns);$i++){
+			$columns_all.=$columns[$i];
+			if($i+1!=count($columns)) $columns_all.=',';
 		}
 		
-		$sql="SELECT ".$coloumns_all." from ".$this->name." ".$condition_in_string;
+		$sql="SELECT ".$columns_all." from ".$this->name." ".$condition_in_string;
 		if($result_table=$this->database->query($sql)){
 			if(!$result_table->num_rows) return false;
 			$row_index=0;
 			while($result_row=$result_table->fetch_assoc()){
-				for($i=0;$i<count($coloumns);$i++){
-					$data[$row_index][$coloumns[$i]]=$result_row[$coloumns[$i]];
+				for($i=0;$i<count($columns);$i++){
+					$data[$row_index][$columns[$i]]=$result_row[$columns[$i]];
 				}
 				$row_index++;
 			}
@@ -81,7 +81,7 @@ class TableInDB{
 
 	//###################################
 	// Insert data into table 
-	// Parametes -> associative array of values with key as coloumns_name 
+	// Parametes -> associative array of values with key as columns_name 
 	// Returns boolean value
 	public function insert($values){
 		
@@ -127,7 +127,7 @@ class TableInDB{
 
 	//###################################
 	// Update data in table 
-	// Parametes -> associative array of values with key as coloumns_name , condition part in a sql in string (i.e -> "where name='John' ")
+	// Parametes -> associative array of values with key as columns_name , condition part in a sql in string (i.e -> "where name='John' ")
 	// Returns boolean value
 	// NOTE: $where_condition bugs in this method are not fixed yet
 	public function update($values,$where_condition){
@@ -180,13 +180,13 @@ class TableInDB{
 	//###################################	
 
 	//###################################
-	// Check whether the value of an attribute or coloumn is in the table or not
-	// Parameters -> coloumn_name in string , condition part in a sql in string (i.e -> "where id = 32 ")
+	// Check whether the value of an attribute or column is in the table or not
+	// Parameters -> column_name in string , condition part in a sql in string (i.e -> "where id = 32 ")
 	// Returns boolean value	
 	// NOTE: This method is not completed yet ... you can be ignore this method 
-	public function has($coloumn_name,$condition_in_string){
+	public function has($column_name,$condition_in_string){
 
-		$sql="SELECT ".$coloumn_name." FROM ".$this->name." ".$condition_in_string;
+		$sql="SELECT ".$column_name." FROM ".$this->name." ".$condition_in_string;
 		if($result_table=$this->database->query($sql)){
 			if($result_table->num_rows>0) return true;
 		}

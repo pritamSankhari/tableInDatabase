@@ -4,7 +4,7 @@ require('./tableInDatabase.php');
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // SHOULD BE USED CAREFULLY
-// All the keys in associative array must be same as attribute name or coloumn name of specific table in database to access database
+// All the keys in associative array must be same as attribute name or column name of specific table in database to access database
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //------------------------
@@ -12,7 +12,7 @@ require('./tableInDatabase.php');
 $serverName="localhost";
 $username="root";
 $password="";
-$databaseName="";
+$databaseName="printnorder";
 //------------------------
 
 //------------------------
@@ -46,7 +46,7 @@ function get_random_string($n){
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // SHOULD BE USED CAREFULLY
-// All the keys in associative array in this file must be same as attribute name or coloumn name of specific table in database to access database
+// All the keys in associative array in this file must be same as attribute name or column name of specific table in database to access database
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 $customer['id']=get_random_string(6);
@@ -94,9 +94,9 @@ else echo "Failed to update!";
 // Fetching or Selecting data from table and showing by php scripts
 // #################################################################
 //--------------------------------------
-$coloumns_to_be_fetched =array('id','order_verified');
+$columns_to_be_fetched =array('id','order_verified');
 
-$recent_order = $order->select($coloumns_to_be_fetched);
+$recent_order = $order->select($columns_to_be_fetched);
 
 echo "<pre>";print_r($recent_order);echo "</pre>";
 //--------------------------------------
@@ -113,9 +113,9 @@ else echo "Failed to delete!";
 // Fetching or Selecting data from table and showing by php scripts
 // #################################################################
 //--------------------------------------
-$coloumns_to_be_fetched =array('id','order_verified');
+$columns_to_be_fetched =array('id','order_verified');
 
-$recent_order = $order->select($coloumns_to_be_fetched);
+$recent_order = $order->select($columns_to_be_fetched);
 
 echo "<pre>";print_r($recent_order);echo "</pre>";
 //--------------------------------------
