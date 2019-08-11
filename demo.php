@@ -63,7 +63,7 @@ $order = new TableInDB($tableName,$db);
 // Avoiding id duplication :)
 // ###################################
 //--------------------------------------
-while($order->has('id',"where bid = '".$customer['id']."'")){
+while($order->has('id',"where id = '".$customer['id']."'")){
 	$customer['id']=get_random_string(6);
 }
 //--------------------------------------
