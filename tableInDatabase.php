@@ -1,4 +1,22 @@
 <?php
+
+$serverName="localhost";
+$username="root";
+$password="";
+$databaseName="";
+
+//Create connection
+$db=new mysqli($serverName,$username,$password,$databaseName);
+
+//$db becomes a mysqli object 
+
+//Check Connection
+if($db->connect_error)
+{
+	echo "Connection falied !";
+	echo "<br>".$db->connect_error;
+	exit();
+}
 //-----------
 //READ ME
 //------------
